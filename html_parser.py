@@ -7,11 +7,9 @@ class HtmlParser(object):
     def _get_new_urls(self, page_url, soup):
         new_urls = set()
         links = soup.find_all('a', href=re.compile(r"/wiki/"))
-        # 网址有变，表达式做了调整
         for link in links:
             new_url = link['href']
             new_full_url = urllib.parse.urljoin(page_url, new_url)
-            # Py3中用到的模块名称变为urllib.parse
             new_urls.add(new_full_url)
         return new_urls
 
